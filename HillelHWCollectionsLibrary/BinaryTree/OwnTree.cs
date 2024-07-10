@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using HillelHWCollectionsLibrary.Interfaces;
 
 namespace HillelHWCollectionsLibrary.BinaryTree
 {
-    public class OwnTree
+    public class OwnTree : ITree
     {
         public BinaryTreeNode? Root { get; private set; }
         public int Count { get; private set; }

@@ -1,6 +1,8 @@
-﻿namespace HillelHWCollectionsLibrary
+﻿using HillelHWCollectionsLibrary.Interfaces;
+
+namespace HillelHWCollectionsLibrary
 {
-    public class OwnList
+    public class OwnList : IList
     {
         private object[] objects;
         private int count;
