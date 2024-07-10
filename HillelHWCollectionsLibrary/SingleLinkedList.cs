@@ -9,26 +9,23 @@ namespace HillelHWCollectionsLibrary
 {
     public class SingleLinkedList
     {
-        protected Node head;
-        protected Node tail;
-        protected int count;
-        protected class Node
+        private Element head;
+        private Element tail;
+        private int count;
+        private class Element
         {
             public object Data;
-            public Node Next;
-            public Node Previous;
+            public Element Next;
 
-
-            public Node(object data)
+            public Element(object data)
             {
                 Data = data;
                 Next = null!;
-                Previous = null!;
             }
         }
-        public int Count => count;
-        public object? First { get { return head != null ? head.Data : null; } }
-        public object? Last { get { return tail != null ? tail.Data : null; } }
+        public virtual int Count => count;
+        public virtual object? First { get { return head != null ? head.Data : null; } }
+        public virtual object? Last { get { return tail != null ? tail.Data : null; } }
         public SingleLinkedList()
         {
             head = null!;
@@ -37,7 +34,7 @@ namespace HillelHWCollectionsLibrary
         }
         public void Add(object value)
         {
-            Node newNode = new Node(value);
+            Element newNode = new Element(value);
             if (head == null)
             {
                 head = newNode;
@@ -52,7 +49,7 @@ namespace HillelHWCollectionsLibrary
         }
         public void AddFirst(object value)
         {
-            Node newNode = new Node(value);
+            Element newNode = new Element(value);
 
             if (head == null)
             {
@@ -67,7 +64,7 @@ namespace HillelHWCollectionsLibrary
             count++;
         }
 
-        public void Insert(int index, object value)
+        public virtual void Insert(int index, object value)
         {
             if (index < 0 || index > count) throw new ArgumentOutOfRangeException();
 
@@ -81,8 +78,8 @@ namespace HillelHWCollectionsLibrary
             }
             else
             {
-                Node newNode = new Node(value);
-                Node current = head!;
+                Element newNode = new Element(value);
+                Element current = head!;
                 for (int i = 1; i < index; i++)
                 {
                     current = current.Next!;
@@ -93,7 +90,7 @@ namespace HillelHWCollectionsLibrary
             }
         }
 
-        public void Clear()
+        public virtual void Clear()
         {
             head = null!;
             tail = null!;
@@ -102,7 +99,7 @@ namespace HillelHWCollectionsLibrary
 
         public bool Contains(object value)
         {
-            Node current = head!;
+            Element current = head!;
             while (current != null)
             {
                 if (current.Data.Equals(value))
@@ -114,10 +111,10 @@ namespace HillelHWCollectionsLibrary
             return false;
         }
 
-        public object[] ToArray()
+        public virtual object[] ToArray()
         {
             object[] array = new object[count];
-            Node current = head!;
+            Element current = head!;
             int index = 0;
             while (current != null)
             {

@@ -8,7 +8,7 @@ namespace HillelHWCollectionsLibrary.BinaryTree
 {
     public class BinaryTreeNode
     {
-        public int Value;
+        public int Value { get; }
         public BinaryTreeNode? Left;
         public BinaryTreeNode? Right;
 

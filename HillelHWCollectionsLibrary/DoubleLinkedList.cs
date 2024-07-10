@@ -8,7 +8,26 @@ namespace HillelHWCollectionsLibrary
 {
     public class DoubleLinkedList : SingleLinkedList
     {
-        public new void Insert(int index, object value)
+        private Element head;
+        private Element tail;
+        private int count;
+        private class Element
+        {
+            public object Data;
+            public Element Next;
+            public Element Previous;
+
+            public Element(object data)
+            {
+                Data = data;
+                Next = null!;
+                Previous = null!;
+            }
+        }
+        public override int Count => count;
+        public override object? First { get { return head != null ? head.Data : null; } }
+        public override object? Last { get { return tail != null ? tail.Data : null; } }
+        public override void Insert(int index, object value)
         {
             if (index < 0 || index > count)
                 throw new ArgumentOutOfRangeException();
@@ -23,8 +42,8 @@ namespace HillelHWCollectionsLibrary
             }
             else
             {
-                Node newNode = new Node(value);
-                Node current = head!;
+                Element newNode = new Element(value);
+                Element current = head!;
 
                 for (int i = 0; i < index; i++)
                 {
@@ -56,7 +75,7 @@ namespace HillelHWCollectionsLibrary
 
         public new void Add(object data)
         {
-            Node newNode = new Node(data);
+            Element newNode = new Element(data);
             if (head == null)
             {
                 head = newNode;
@@ -73,7 +92,7 @@ namespace HillelHWCollectionsLibrary
 
         public new void AddFirst(object data)
         {
-            Node newNode = new Node(data);
+            Element newNode = new Element(data);
 
             if (head == null)
             {
@@ -91,7 +110,7 @@ namespace HillelHWCollectionsLibrary
 
         public void Remove(object data)
         {
-            Node current = head;
+            Element current = head;
             while (current != null)
             {
                 if (current.Data.Equals(data))
@@ -157,7 +176,7 @@ namespace HillelHWCollectionsLibrary
 
         public new bool Contains(object data)
         {
-            Node current = head;
+            Element current = head;
             while (current != null)
             {
                 if (current.Data.Equals(data))
@@ -167,6 +186,24 @@ namespace HillelHWCollectionsLibrary
                 current = current.Next;
             }
             return false;
+        }
+        public override void Clear()
+        {
+            head = null!;
+            tail = null!;
+            count = 0;
+        }
+        public override object[] ToArray()
+        {
+            object[] array = new object[count];
+            Element current = head!;
+            int index = 0;
+            while (current != null)
+            {
+                array[index++] = current.Data;
+                current = current.Next!;
+            }
+            return array;
         }
     }
 }
