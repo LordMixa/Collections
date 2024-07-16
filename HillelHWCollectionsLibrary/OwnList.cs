@@ -2,16 +2,16 @@
 
 namespace HillelHWCollectionsLibrary
 {
-    public class OwnList : IList
+    public class OwnList<T> : Interfaces.IList<T>
     {
-        private object[] objects;
+        private T[] objects;
         private int count;
         private int capacity;
         public int Count
         {
             get { return count; }
         }
-        public object this[int i]
+        public T this[int i]
         {
             get
             {
@@ -28,20 +28,20 @@ namespace HillelHWCollectionsLibrary
         {
             count = 0;
             capacity = 4;
-            objects = new object[capacity];
+            objects = new T[capacity];
         }
         public OwnList(int capacity)
         {
             count = 0;
             this.capacity = capacity > 0 ? capacity : 4;
-            objects = new object[this.capacity];
+            objects = new T[this.capacity];
         }
         private void CheckAndIncreaseCapacity()
         {
             if (count >= capacity)
             {
                 capacity *= 2;
-                object[] newObjects = new object[capacity];
+                T[] newObjects = new T[capacity];
                 for (int i = 0; i < count; i++)
                 {
                     newObjects[i] = objects[i];
@@ -49,13 +49,13 @@ namespace HillelHWCollectionsLibrary
                 objects = newObjects;
             }
         }
-        public void Add(object obj)
+        public void Add(T obj)
         {
             CheckAndIncreaseCapacity();
             objects[count] = obj;
             count++;
         }
-        public void Insert(int index, object obj)
+        public void Insert(int index, T obj)
         {
             if (index < 0 || index > count) throw new IndexOutOfRangeException();
             CheckAndIncreaseCapacity();
@@ -66,7 +66,7 @@ namespace HillelHWCollectionsLibrary
             objects[index] = obj;
             count++;
         }
-        public void Remove(object obj)
+        public void Remove(T obj)
         {
             int index = IndexOf(obj);
             if (index != -1)
@@ -82,30 +82,30 @@ namespace HillelHWCollectionsLibrary
                 objects[i] = objects[i + 1];
             }
             count--;
-            objects[count] = null!;
+            objects[count] = default!;
         }
         public void Clear()
         {
             capacity = 4;
-            objects = new object[capacity];
+            objects = new T[capacity];
             count = 0;
         }
-        public bool Contains(object obj)
+        public bool Contains(T obj)
         {
             return IndexOf(obj) != -1;
         }
-        public int IndexOf(object obj)
+        public int IndexOf(T obj)
         {
             for (int i = 0; i < count; i++)
             {
-                if (objects[i].Equals(obj))
+                if (objects[i]!.Equals(obj))
                     return i;
             }
             return -1;
         }
-        public object[] ToArray()
+        public T[] ToArray()
         {
-            object[] array = new object[count];
+            T[] array = new T[count];
             for (int i = 0; i < count; i++)
             {
                 array[i] = objects[i];
@@ -116,7 +116,7 @@ namespace HillelHWCollectionsLibrary
         {
             for (int i = 0; i < count / 2; i++)
             {
-                object temp = objects[i];
+                T temp = objects[i];
                 objects[i] = objects[count - 1 - i];
                 objects[count - 1 - i] = temp;
             }

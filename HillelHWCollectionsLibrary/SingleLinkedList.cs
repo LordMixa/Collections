@@ -8,32 +8,32 @@ using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace HillelHWCollectionsLibrary
 {
-    public class SingleLinkedList : ISingleLinkedList
+    public class SingleLinkedList<T> : ISingleLinkedList<T>
     {
         private Element head;
         private Element tail;
         private int count;
         private class Element
         {
-            public object Data;
+            public T Data;
             public Element Next;
 
-            public Element(object data)
+            public Element(T data)
             {
                 Data = data;
                 Next = null!;
             }
         }
         public virtual int Count => count;
-        public virtual object? First { get { return head != null ? head.Data : null; } }
-        public virtual object? Last { get { return tail != null ? tail.Data : null; } }
+        public virtual T? First { get { return head != null ? head.Data : default; } }
+        public virtual T? Last { get { return tail != null ? tail.Data : default; } }
         public SingleLinkedList()
         {
             head = null!;
             tail = null!;
             count = 0;
         }
-        public void Add(object value)
+        public void Add(T value)
         {
             Element newNode = new Element(value);
             if (head == null)
@@ -48,7 +48,7 @@ namespace HillelHWCollectionsLibrary
             }
             count++;
         }
-        public void AddFirst(object value)
+        public void AddFirst(T value)
         {
             Element newNode = new Element(value);
 
@@ -65,7 +65,7 @@ namespace HillelHWCollectionsLibrary
             count++;
         }
 
-        public virtual void Insert(int index, object value)
+        public virtual void Insert(int index, T value)
         {
             if (index < 0 || index > count) throw new ArgumentOutOfRangeException();
 
@@ -98,12 +98,12 @@ namespace HillelHWCollectionsLibrary
             count = 0;
         }
 
-        public bool Contains(object value)
+        public bool Contains(T value)
         {
             Element current = head!;
             while (current != null)
             {
-                if (current.Data.Equals(value))
+                if (current.Data!.Equals(value))
                 {
                     return true;
                 }
@@ -112,9 +112,9 @@ namespace HillelHWCollectionsLibrary
             return false;
         }
 
-        public virtual object[] ToArray()
+        public virtual T[] ToArray()
         {
-            object[] array = new object[count];
+            T[] array = new T[count];
             Element current = head!;
             int index = 0;
             while (current != null)

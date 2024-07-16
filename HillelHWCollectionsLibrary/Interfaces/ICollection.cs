@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace HillelHWCollectionsLibrary.Interfaces
 {
-    public interface ICollection
+    public interface ICollection<T>
     {
         int Count { get; }
         void Clear();

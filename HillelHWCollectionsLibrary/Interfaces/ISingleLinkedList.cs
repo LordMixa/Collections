@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace HillelHWCollectionsLibrary.Interfaces
 {
-    public interface ISingleLinkedList : ICollection
+    public interface ISingleLinkedList<T> : ICollection<T>
     {
-        object? First { get; }
-        object? Last { get; }
-        void Add(object data);
-        void AddFirst(object data);
-        void Insert(int index, object value);
-        bool Contains(object data);
-        object[] ToArray();
+        T? First { get; }
+        T? Last { get; }
+        void Add(T data);
+        void AddFirst(T data);
+        void Insert(int index, T value);
+        bool Contains(T data);
+        T[] ToArray();
     }
 }

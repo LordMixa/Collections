@@ -7,9 +7,9 @@ using HillelHWCollectionsLibrary.Interfaces;
 
 namespace HillelHWCollectionsLibrary.BinaryTree
 {
-    public class OwnTree : ITree
+    public class OwnTree<T> : ITree<T>, IComparable<T>
     {
-        public BinaryTreeNode? Root { get; private set; }
+        public BinaryTreeNode<T>? Root { get; private set; }
         public int Count { get; private set; }
 
         public OwnTree()
@@ -18,11 +18,11 @@ namespace HillelHWCollectionsLibrary.BinaryTree
             Count = 0;
         }
 
-        public void Add(int value)
+        public void Add(T value)
         {
             if (Root == null)
             {
-                Root = new BinaryTreeNode(value);
+                Root = new BinaryTreeNode<T>(value);
             }
             else
             {
@@ -31,13 +31,13 @@ namespace HillelHWCollectionsLibrary.BinaryTree
             Count++;
         }
 
-        private void AddTo(BinaryTreeNode node, int value)
+        private void AddTo(BinaryTreeNode<T> node, T value)
         {
-            if (value < node.Value)
+            if (node.CompareTo(value) < 0)
             {
                 if (node.Left == null)
                 {
-                    node.Left = new BinaryTreeNode(value);
+                    node.Left = new BinaryTreeNode<T>(value);
                 }
                 else
                 {
@@ -48,33 +48,67 @@ namespace HillelHWCollectionsLibrary.BinaryTree
             {
                 if (node.Right == null)
                 {
-                    node.Right = new BinaryTreeNode(value);
+                    node.Right = new BinaryTreeNode<T>(value);
                 }
                 else
                 {
                     AddTo(node.Right, value);
                 }
             }
+            //if (value < node.Value)
+            //{
+            //    if (node.Left == null)
+            //    {
+            //        node.Left = new BinaryTreeNode<T>(value);
+            //    }
+            //    else
+            //    {
+            //        AddTo(node.Left, value);
+            //    }
+            //}
+            //else
+            //{
+            //    if (node.Right == null)
+            //    {
+            //        node.Right = new BinaryTreeNode<T>(value);
+            //    }
+            //    else
+            //    {
+            //        AddTo(node.Right, value);
+            //    }
+            //}
         }
 
-        public bool Contains(int value)
+        public bool Contains(T value)
         {
             return ContainsIn(Root!, value);
         }
 
-        private bool ContainsIn(BinaryTreeNode node, int value)
+        private bool ContainsIn(BinaryTreeNode<T> node, T value)
         {
             if (node == null)
             {
                 return false;
             }
-
-            if (value == node.Value)
+            //int comparison = value.CompareTo(node.Value);
+            //if (comparison == 0)
+            //{
+            //    return true;
+            //}
+            //else if (comparison < 0)
+            //{
+            //    return ContainsIn(node.Left, value);
+            //}
+            //else
+            //{
+            //    return ContainsIn(node.Right, value);
+            //}
+            if (node.CompareTo(value) == 0)
             {
                 return true;
             }
 
-            if (value < node.Value)
+            if (node.CompareTo(value) < 0)
             {
                 return ContainsIn(node.Left!, value);
             }
@@ -90,14 +124,14 @@ namespace HillelHWCollectionsLibrary.BinaryTree
             Count = 0;
         }
 
-        public int[] ToArray()
+        public T[] ToArray()
         {
-            List<int> elements = new List<int>();
+            List<T> elements = new List<T>();
             ToArray(Root!, elements);
             return elements.ToArray();
         }
 
-        private void ToArray(BinaryTreeNode node, List<int> elements)
+        private void ToArray(BinaryTreeNode<T> node, List<T> elements)
         {
             if (node == null)
             {
@@ -107,6 +141,11 @@ namespace HillelHWCollectionsLibrary.BinaryTree
             ToArray(node.Left!, elements);
             elements.Add(node.Value);
             ToArray(node.Right!, elements);
+        }
+
+        public int CompareTo(T? other)
+        {
+            throw new NotImplementedException();
         }
     }
 

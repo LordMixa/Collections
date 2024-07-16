@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace HillelHWCollectionsLibrary.Interfaces
 {
-    public interface IStack : ICollection
+    public interface IStack<T> : ICollection<T>
     {
-        void Push(object item);
-        object Pop();
-        bool Contains(object item);
-        object Peek();
-        object[] ToArray();
+        void Push(T item);
+        T Pop();
+        bool Contains(T item);
+        T Peek();
+        T[] ToArray();
     }
 }

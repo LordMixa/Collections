@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace HillelHWCollectionsLibrary.Interfaces
 {
-    public interface ITree : ICollection
+    public interface ITree<T> : ICollection<T>
     {
-        void Add(int item);
-        bool Contains(int item);
-        int[] ToArray();
+        void Add(T item);
+        bool Contains(T item);
+        T[] ToArray();
     }
 }
