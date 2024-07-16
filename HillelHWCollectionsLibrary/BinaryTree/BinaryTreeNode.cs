@@ -48,6 +48,14 @@ namespace HillelHWCollectionsLibrary.BinaryTree
                         double yValue = Convert.ToDouble(other);
                         return xValue.CompareTo(yValue);
                     }
+                    if (IsNumber(Value) && other is string otherString && int.TryParse(otherString, out int otherInt))
+                    {
+                        return Convert.ToInt32(Value).CompareTo(otherInt);
+                    }
+                    if (Value is string stringValue && IsNumber(other) && int.TryParse(stringValue, out int parsedInt))
+                    {
+                        return parsedInt.CompareTo(Convert.ToInt32(other));
+                    }
                     if (Value.Equals(other))
                     {
                         return 0;

@@ -7,7 +7,7 @@ using HillelHWCollectionsLibrary.Interfaces;
 
 namespace HillelHWCollectionsLibrary.BinaryTree
 {
-    public class OwnTree<T> : ITree<T>, IComparable<T>
+    public class OwnTree<T> : ITree<T>
     {
         public BinaryTreeNode<T>? Root { get; private set; }
         public int Count { get; private set; }
@@ -55,28 +55,6 @@ namespace HillelHWCollectionsLibrary.BinaryTree
                     AddTo(node.Right, value);
                 }
             }
-            //if (value < node.Value)
-            //{
-            //    if (node.Left == null)
-            //    {
-            //        node.Left = new BinaryTreeNode<T>(value);
-            //    }
-            //    else
-            //    {
-            //        AddTo(node.Left, value);
-            //    }
-            //}
-            //else
-            //{
-            //    if (node.Right == null)
-            //    {
-            //        node.Right = new BinaryTreeNode<T>(value);
-            //    }
-            //    else
-            //    {
-            //        AddTo(node.Right, value);
-            //    }
-            //}
         }
 
         public bool Contains(T value)
@@ -90,19 +68,6 @@ namespace HillelHWCollectionsLibrary.BinaryTree
             {
                 return false;
             }
-            //int comparison = value.CompareTo(node.Value);
-            //if (comparison == 0)
-            //{
-            //    return true;
-            //}
-            //else if (comparison < 0)
-            //{
-            //    return ContainsIn(node.Left, value);
-            //}
-            //else
-            //{
-            //    return ContainsIn(node.Right, value);
-            //}
             if (node.CompareTo(value) == 0)
             {
                 return true;
@@ -142,11 +107,5 @@ namespace HillelHWCollectionsLibrary.BinaryTree
             elements.Add(node.Value);
             ToArray(node.Right!, elements);
         }
-
-        public int CompareTo(T? other)
-        {
-            throw new NotImplementedException();
-        }
     }
-
 }
