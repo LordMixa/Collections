@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HillelHWCollectionsLibrary.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,7 +8,7 @@ using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace HillelHWCollectionsLibrary
 {
-    public class SingleLinkedList
+    public class SingleLinkedList : ISingleLinkedList
     {
         private Element head;
         private Element tail;

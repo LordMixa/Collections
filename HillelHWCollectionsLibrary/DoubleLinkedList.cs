@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HillelHWCollectionsLibrary.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace HillelHWCollectionsLibrary
 {
-    public class DoubleLinkedList : SingleLinkedList
+    public class DoubleLinkedList : SingleLinkedList, IDoubleLinkedList
     {
         private Element head;
         private Element tail;
