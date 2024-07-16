@@ -46,9 +46,12 @@ namespace HillelHWCollectionsConsole
         public void TestBTree()
         {
             Console.WriteLine("\n\nTest Binary Tree");
-            Console.WriteLine("Added 5,3,6,4,8,2");
+            Console.WriteLine("Added string 3, string 5, int 10000,  double 15.3, double 15.2, bool true,char h,new SingleLinkedList<object>(),int 4");
             OwnTree<object> owntree = new OwnTree<object>();
             owntree.Add("3");
+            owntree.Add("5");
+            owntree.Add(10000);
+            owntree.Add(15.3);
             owntree.Add(15.2);
             owntree.Add(true);
             owntree.Add('h');

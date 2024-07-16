@@ -33,7 +33,7 @@ namespace HillelHWCollectionsLibrary.BinaryTree
 
         private void AddTo(BinaryTreeNode<T> node, T value)
         {
-            if (node.CompareTo(value) < 0)
+            if (node.CompareTo(value) > 0)
             {
                 if (node.Left == null)
                 {
