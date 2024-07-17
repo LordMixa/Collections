@@ -7,7 +7,7 @@ using HillelHWCollectionsLibrary.Interfaces;
 
 namespace HillelHWCollectionsLibrary.BinaryTree
 {
-    public class OwnTree<T> : ITree<T>
+    public class OwnTree<T> : ITree<T> where T : IComparable<T>
     {
         public BinaryTreeNode<T>? Root { get; private set; }
         public int Count { get; private set; }

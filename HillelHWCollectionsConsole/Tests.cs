@@ -45,18 +45,16 @@ namespace HillelHWCollectionsConsole
         }
         public void TestBTree()
         {
-            Console.WriteLine("\n\nTest Binary Tree");
-            Console.WriteLine("Added string 3, string 5, int 10000,  double 15.3, double 15.2, bool true,char h,new SingleLinkedList<object>(),int 4");
-            OwnTree<object> owntree = new OwnTree<object>();
-            owntree.Add("3");
-            owntree.Add("5");
-            owntree.Add(10000);
-            owntree.Add(15.3);
-            owntree.Add(15.2);
-            owntree.Add(true);
-            owntree.Add('h');
-            owntree.Add(new SingleLinkedList<object>());
-            owntree.Add(4);
+            Console.WriteLine("\n\nTest Binary Tree(Strung)");
+            Console.WriteLine("Added strings: adasd, zc,  123, hillel, C#, code h, michael V");
+            OwnTree<string> owntree = new OwnTree<string>();
+            owntree.Add("adasd");
+            owntree.Add("zc");
+            owntree.Add("123");
+            owntree.Add("hillel");
+            owntree.Add("C#");
+            owntree.Add("code");
+            owntree.Add("michael V");
             object[] objs = owntree.ToArray();
             foreach (object obj in objs) { Console.WriteLine(obj); }
             
