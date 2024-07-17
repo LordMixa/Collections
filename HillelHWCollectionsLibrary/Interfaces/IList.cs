@@ -6,16 +6,16 @@ using System.Threading.Tasks;
 
 namespace HillelHWCollectionsLibrary.Interfaces
 {
-    public interface IList:ICollection
+    public interface IList<T>:ICollection<T>
     {
-        object this[int i] { get; set; }
-        void Add(object item);
-        void Insert(int index, object obj);
-        void Remove(object obj);
+        T this[int i] { get; set; }
+        void Add(T item);
+        void Insert(int index, T obj);
+        void Remove(T obj);
         void RemoveAt(int index);
-        bool Contains(object obj);
-        int IndexOf(object obj);
-        object[] ToArray();
+        bool Contains(T obj);
+        int IndexOf(T obj);
+        T[] ToArray();
         void Reverse();
     }
 }

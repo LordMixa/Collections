@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace HillelHWCollectionsLibrary.Interfaces
 {
-    public interface IQueue : ICollection
+    public interface IQueue<T> : ICollection<T>
     {
-        void Enqueue(object item);
-        object Dequeue();
-        bool Contains(object item);
-        object Peek();
-        object[] ToArray();
+        void Enqueue(T item);
+        T Dequeue();
+        bool Contains(T item);
+        T Peek();
+        T[] ToArray();
     }
 }

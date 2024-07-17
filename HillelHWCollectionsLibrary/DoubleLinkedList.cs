@@ -7,18 +7,18 @@ using System.Threading.Tasks;
 
 namespace HillelHWCollectionsLibrary
 {
-    public class DoubleLinkedList : SingleLinkedList, IDoubleLinkedList
+    public class DoubleLinkedList<T> : SingleLinkedList<T>, IDoubleLinkedList<T>
     {
         private Element head;
         private Element tail;
         private int count;
         private class Element
         {
-            public object Data;
+            public T Data;
             public Element Next;
             public Element Previous;
 
-            public Element(object data)
+            public Element(T data)
             {
                 Data = data;
                 Next = null!;
@@ -26,9 +26,9 @@ namespace HillelHWCollectionsLibrary
             }
         }
         public override int Count => count;
-        public override object? First { get { return head != null ? head.Data : null; } }
-        public override object? Last { get { return tail != null ? tail.Data : null; } }
-        public override void Insert(int index, object value)
+        public override T? First { get { return head != null ? head.Data : default; } }
+        public override T? Last { get { return tail != null ? tail.Data : default; } }
+        public override void Insert(int index, T value)
         {
             if (index < 0 || index > count)
                 throw new ArgumentOutOfRangeException();
@@ -74,7 +74,7 @@ namespace HillelHWCollectionsLibrary
             count = 0;
         }
 
-        public new void Add(object data)
+        public new void Add(T data)
         {
             Element newNode = new Element(data);
             if (head == null)
@@ -91,7 +91,7 @@ namespace HillelHWCollectionsLibrary
             count++;
         }
 
-        public new void AddFirst(object data)
+        public new void AddFirst(T data)
         {
             Element newNode = new Element(data);
 
@@ -109,12 +109,12 @@ namespace HillelHWCollectionsLibrary
             count++;
         }
 
-        public void Remove(object data)
+        public void Remove(T data)
         {
             Element current = head;
             while (current != null)
             {
-                if (current.Data.Equals(data))
+                if (current.Data!.Equals(data))
                 {
                     if (current.Previous != null)
                     {
@@ -175,12 +175,12 @@ namespace HillelHWCollectionsLibrary
             }
         }
 
-        public new bool Contains(object data)
+        public new bool Contains(T data)
         {
             Element current = head;
             while (current != null)
             {
-                if (current.Data.Equals(data))
+                if (current.Data!.Equals(data))
                 {
                     return true;
                 }
@@ -194,9 +194,9 @@ namespace HillelHWCollectionsLibrary
             tail = null!;
             count = 0;
         }
-        public override object[] ToArray()
+        public override T[] ToArray()
         {
-            object[] array = new object[count];
+            T[] array = new T[count];
             Element current = head!;
             int index = 0;
             while (current != null)

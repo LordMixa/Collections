@@ -22,7 +22,7 @@ namespace HillelHWCollectionsConsole
         public void TestList()
         {
             Console.WriteLine("Test List");
-            OwnList ownList = new OwnList();
+            OwnList<object> ownList = new OwnList<object>();
             ownList.Add(1);
             ownList.Add("asdasd");
             ownList.Add('s');
@@ -45,26 +45,27 @@ namespace HillelHWCollectionsConsole
         }
         public void TestBTree()
         {
-            Console.WriteLine("\n\nTest Binary Tree");
-            Console.WriteLine("Added 5,3,6,4,8,2");
-            OwnTree owntree = new OwnTree();
-            owntree.Add(5);
-            owntree.Add(3);
-            owntree.Add(6);
-            owntree.Add(4);
-            owntree.Add(8);
-            owntree.Add(2);
-            int[] ints = owntree.ToArray();
-            foreach (object obj in ints) { Console.WriteLine(obj); }
+            Console.WriteLine("\n\nTest Binary Tree(Strung)");
+            Console.WriteLine("Added strings: adasd, zc,  123, hillel, C#, code h, michael V");
+            OwnTree<string> owntree = new OwnTree<string>();
+            owntree.Add("adasd");
+            owntree.Add("zc");
+            owntree.Add("123");
+            owntree.Add("hillel");
+            owntree.Add("C#");
+            owntree.Add("code");
+            owntree.Add("michael V");
+            object[] objs = owntree.ToArray();
+            foreach (object obj in objs) { Console.WriteLine(obj); }
             
             owntree.Clear();
-            ints = owntree.ToArray();
-            foreach (object obj in ints) { Console.WriteLine(obj); }
+            objs = owntree.ToArray();
+            foreach (object obj in objs) { Console.WriteLine(obj); }
         }
         public void TestSingleLinkedList()
         {
             Console.WriteLine("\n\nTest single Linked List");
-            SingleLinkedList ownList = new SingleLinkedList();
+            SingleLinkedList<object> ownList = new SingleLinkedList<object>();
             ownList.Add(1);
             ownList.Add("asdasd");
             ownList.Add('s');
@@ -85,7 +86,7 @@ namespace HillelHWCollectionsConsole
         public void TestDoubleLinkedList()
         {
             Console.WriteLine("\n\nTest double Linked List");
-            DoubleLinkedList ownList = new DoubleLinkedList();
+            DoubleLinkedList<object> ownList = new DoubleLinkedList<object>();
             ownList.Add(1);
             ownList.Add("asdasd");
             ownList.Add('s');
@@ -112,7 +113,7 @@ namespace HillelHWCollectionsConsole
         public void TestQueue()
         {
             Console.WriteLine("\n\nQueue List");
-            Queue ownList = new Queue();
+            HillelHWCollectionsLibrary.Queue<object> ownList = new HillelHWCollectionsLibrary.Queue<object>();
             ownList.Enqueue(1);
             ownList.Enqueue("asdasd");
             ownList.Enqueue('s');
@@ -133,7 +134,7 @@ namespace HillelHWCollectionsConsole
         public void TestStack()
         {
             Console.WriteLine("\n\nStack List");
-            Stack ownList = new Stack();
+            HillelHWCollectionsLibrary.Stack<object> ownList = new HillelHWCollectionsLibrary.Stack<object>();
             ownList.Push(1);
             ownList.Push("asdasd");
             ownList.Push('s');

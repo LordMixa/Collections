@@ -6,17 +6,17 @@ using System.Threading.Tasks;
 
 namespace HillelHWCollectionsLibrary.Interfaces
 {
-    public interface IDoubleLinkedList : ICollection
+    public interface IDoubleLinkedList<T> : ICollection<T>
     {
-        object? First { get; }
-        object? Last { get; }
-        void Add(object data);
-        void AddFirst(object data);
-        void Insert(int index, object value);
-        void Remove(object data);
+        T? First { get; }
+        T? Last { get; }
+        void Add(T data);
+        void AddFirst(T data);
+        void Insert(int index, T value);
+        void Remove(T data);
         void RemoveFirst();
         void RemoveLast();
-        bool Contains(object data);
-        object[] ToArray();
+        bool Contains(T data);
+        T[] ToArray();
     }
 }

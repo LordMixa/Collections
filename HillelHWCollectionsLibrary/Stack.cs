@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace HillelHWCollectionsLibrary
 {
-    public class Stack : IStack
+    public class Stack<T> : IStack<T>
     {
-        private object[] elements;
+        private T[] elements;
         private int count;
         private const int DefaultCapacity = 4;
 
@@ -17,11 +17,11 @@ namespace HillelHWCollectionsLibrary
 
         public Stack()
         {
-            elements = new object[DefaultCapacity];
+            elements = new T[DefaultCapacity];
             count = 0;
         }
 
-        public void Push(object item)
+        public void Push(T item)
         {
             if (count == elements.Length)
             {
@@ -32,7 +32,7 @@ namespace HillelHWCollectionsLibrary
             count++;
         }
 
-        public object Pop()
+        public T Pop()
         {
             if (count == 0)
             {
@@ -40,8 +40,8 @@ namespace HillelHWCollectionsLibrary
             }
 
             count--;
-            object item = elements[count];
-            elements[count] = null!; 
+            T item = elements[count];
+            elements[count] = default!; 
 
             if (count > 0 && count == elements.Length / 4)
             {
@@ -53,15 +53,15 @@ namespace HillelHWCollectionsLibrary
 
         public void Clear()
         {
-            elements = new object[DefaultCapacity];
+            elements = new T[DefaultCapacity];
             count = 0;
         }
 
-        public bool Contains(object item)
+        public bool Contains(T item)
         {
             for (int i = 0; i < count; i++)
             {
-                if (elements[i] != null && elements[i].Equals(item))
+                if (elements[i] != null && elements[i]!.Equals(item))
                 {
                     return true;
                 }
@@ -70,7 +70,7 @@ namespace HillelHWCollectionsLibrary
             return false;
         }
 
-        public object Peek()
+        public T Peek()
         {
             if (count == 0)
             {
@@ -80,9 +80,9 @@ namespace HillelHWCollectionsLibrary
             return elements[count - 1];
         }
 
-        public object[] ToArray()
+        public T[] ToArray()
         {
-            object[] array = new object[count];
+            T[] array = new T[count];
             for (int i = 0; i < count; i++)
             {
                 array[i] = elements[i];
@@ -93,7 +93,7 @@ namespace HillelHWCollectionsLibrary
 
         private void Resize(int newCapacity)
         {
-            object[] newArray = new object[newCapacity];
+            T[] newArray = new T[newCapacity];
             for (int i = 0; i < count; i++)
             {
                 newArray[i] = elements[i];
