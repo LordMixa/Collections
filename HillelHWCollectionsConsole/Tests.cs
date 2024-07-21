@@ -1,5 +1,6 @@
 ﻿using HillelHWCollectionsLibrary;
 using HillelHWCollectionsLibrary.BinaryTree;
+using HillelHWCollectionsLibrary.Observer;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,12 +13,30 @@ namespace HillelHWCollectionsConsole
     {
         public Tests() 
         {
-            TestList();
-            TestBTree();
-            TestSingleLinkedList();
-            TestDoubleLinkedList();
-            TestQueue();
-            TestStack();
+            TestObsList();
+            //TestList();
+            //TestBTree();
+            //TestSingleLinkedList();
+            //TestDoubleLinkedList();
+            //TestQueue();
+            //TestStack();
+        }
+        public void TestObsList()
+        {
+            ObsList<string> obsList = new ObsList<string>();
+            obsList.Add("123");
+            obsList.Add("223");
+            obsList.Add("323");
+            obsList.Add("423");
+            obsList.Add("523");
+            obsList.Add("623");
+            obsList.RemoveAt(0);
+            obsList.RemoveAt(1);
+            obsList.Remove("623");//тут буде виводитися на консоль ще одна RemoveAt 3, бо цей метод Remove викликає RemoveAt 
+            obsList.Insert(2, "2");
+            string[] strings = { "223", "423", "2", "523" };
+            Console.WriteLine(strings.SequenceEqual(obsList.ToArray())); 
+
         }
         public void TestList()
         {

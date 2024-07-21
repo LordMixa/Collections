@@ -49,13 +49,13 @@ namespace HillelHWCollectionsLibrary
                 objects = newObjects;
             }
         }
-        public void Add(T obj)
+        public virtual void Add(T obj)
         {
             CheckAndIncreaseCapacity();
             objects[count] = obj;
             count++;
         }
-        public void Insert(int index, T obj)
+        public virtual void Insert(int index, T obj)
         {
             if (index < 0 || index > count) throw new IndexOutOfRangeException();
             CheckAndIncreaseCapacity();
@@ -66,7 +66,7 @@ namespace HillelHWCollectionsLibrary
             objects[index] = obj;
             count++;
         }
-        public void Remove(T obj)
+        public virtual void Remove(T obj)
         {
             int index = IndexOf(obj);
             if (index != -1)
@@ -74,7 +74,7 @@ namespace HillelHWCollectionsLibrary
                 RemoveAt(index);
             }
         }
-        public void RemoveAt(int index)
+        public virtual void RemoveAt(int index)
         {
             if (index < 0 || index >= count) throw new IndexOutOfRangeException();
             for (int i = index; i < count - 1; i++)
