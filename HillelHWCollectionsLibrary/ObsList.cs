@@ -10,9 +10,6 @@ namespace HillelHWCollectionsLibrary
     public class ObsList<T> : OwnList<T>
     {
         public event EventHandler<EventArgs>? Changes;
-        public event EventHandler<EventArgs>? ItemAdded;
-        public event EventHandler<EventArgs>? ItemInserted;
-        public event EventHandler<EventArgs>? ItemRemoved;
         protected virtual void OnChanges(ListEventsArgs<T> e)
         {
             if(e.NameOperation=="Add")
