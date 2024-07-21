@@ -4,12 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HillelHWCollectionsLibrary
+namespace HillelHWCollectionsLibrary.Observer
 {
     public class ListEventsArgs<T> : EventArgs
     {
-        public T ?Obj {  get; init; }
+        public T? Obj { get; init; }
         public int Index { get; init; }
-        public string ?NameOperation { get; init; }
+        public Action Command { get; init; }
     }
 }

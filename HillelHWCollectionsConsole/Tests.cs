@@ -1,5 +1,6 @@
 ﻿using HillelHWCollectionsLibrary;
 using HillelHWCollectionsLibrary.BinaryTree;
+using HillelHWCollectionsLibrary.Observer;
 using System;
 using System.Collections.Generic;
 using System.Linq;
