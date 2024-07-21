@@ -16,13 +16,13 @@ namespace HillelHWCollectionsLibrary
         protected virtual void OnChanges(ListEventsArgs<T> e)
         {
             if(e.NameOperation=="Add")
-                Console.WriteLine("Add operation with event");
+                Console.WriteLine($"{e.NameOperation} operation with event. {e.Obj} added");
             else if(e.NameOperation == "Insert")
-                Console.WriteLine("Insert operation with event");
+                Console.WriteLine($"{e.NameOperation} operation with event. {e.Obj} added on {e.Index} index");
             else if (e.NameOperation == "Remove")
-                Console.WriteLine("Remove operation with event");
+                Console.WriteLine($"{e.NameOperation} operation with event. {e.Obj} removed");
             else if (e.NameOperation == "RemoveAt")
-                Console.WriteLine("RemoveAt operation with event");
+                Console.WriteLine($"{e.NameOperation} operation with event. On {e.Index} index removed");
             Changes?.Invoke(this, e);
         }
         public override void Add(T obj)
