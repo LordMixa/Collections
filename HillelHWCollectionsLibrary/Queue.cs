@@ -1,8 +1,10 @@
 ﻿using HillelHWCollectionsLibrary.Interfaces;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace HillelHWCollectionsLibrary
@@ -121,5 +123,76 @@ namespace HillelHWCollectionsLibrary
             head = 0;
             tail = count;
         }
+
+        public IEnumerator<T> GetEnumerator()
+        {
+            int index = head;
+            int itemsChecked = 0;
+
+            while (itemsChecked < count)
+            {
+                yield return elements[index];
+                index = (index + 1) % elements.Length;
+                itemsChecked++;
+            }
+        }
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
+        }
+        //public IEnumerator<T> GetEnumerator()
+        //{
+        //    return new QueueIterator<T>(elements, head, count);
+        //}
+        //public class QueueIterator<T> : IEnumerator<T>
+        //{
+        //    private readonly T[] elements;
+        //    private readonly int count;
+        //    private readonly int head;
+        //    private int currentIndex;
+        //    private int itemsChecked;
+
+        //    public QueueIterator(T[] elements, int head, int count)
+        //    {
+        //        this.elements = elements;
+        //        this.head = head;
+        //        this.count = count;
+        //        this.currentIndex = head - 1;
+        //        this.itemsChecked = 0;
+        //    }
+
+        //    public T Current
+        //    {
+        //        get
+        //        {
+        //            if (currentIndex == -1 || currentIndex >= elements.Length)
+        //            {
+        //                throw new InvalidOperationException();
+        //            }
+        //            return elements[currentIndex];
+        //        }
+        //    }
+
+        //    object IEnumerator.Current => Current;
+
+        //    public bool MoveNext()
+        //    {
+        //        if (itemsChecked >= count)
+        //        {
+        //            return false;
+        //        }
+        //        currentIndex = (currentIndex + 1) % elements.Length;
+        //        itemsChecked++;
+        //        return true;
+        //    }
+
+        //    public void Reset()
+        //    {
+        //        currentIndex = head - 1;
+        //        itemsChecked = 0;
+        //    }
+
+        //    public void Dispose() { }
+        //}
     }
 }

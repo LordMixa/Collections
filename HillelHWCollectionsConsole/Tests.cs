@@ -12,12 +12,158 @@ namespace HillelHWCollectionsConsole
     {
         public Tests() 
         {
-            TestList();
-            TestBTree();
-            TestSingleLinkedList();
-            TestDoubleLinkedList();
-            TestQueue();
-            TestStack();
+            IteratorTest();
+            //TestList();
+            //TestBTree();
+            //TestSingleLinkedList();
+            //TestDoubleLinkedList();
+            //TestQueue();
+            //TestStack();
+        }
+        public void IteratorTest()
+        {
+            var list = new OwnList<int>
+            {
+                1, 1, 1, 34, 65, 754, 88, 1, 2, 4
+            };
+            var coll = LinqExtensions.Filter(list, item => item >= 3);
+            Console.WriteLine("Test Filter:\nMust be: 34, 65, 754, 88, 4");
+            foreach (var item in coll)
+            {
+                Console.WriteLine(item);
+            }
+            coll = LinqExtensions.Skip(list, 2);
+            Console.WriteLine("\nTest Skip:\nMust be: 1, 34, 65, 754, 88, 1, 2, 4");
+            foreach (var item in coll)
+            {
+                Console.WriteLine(item);
+            }
+            coll = LinqExtensions.SkipWhile(list, item => item < 64);
+            Console.WriteLine("\nTest SkipWhile:\nMust be: 65, 754, 88, 1, 2, 4");
+            foreach (var item in coll)
+            {
+                Console.WriteLine(item);
+            }
+            coll = LinqExtensions.Take(list, 4);
+            Console.WriteLine("\nTest TakeWhile:\nMust be: 1, 1, 1, 34");
+            foreach (var item in coll)
+            {
+                Console.WriteLine(item);
+            }
+            coll = LinqExtensions.TakeWhile(list, item => item < 3);
+            Console.WriteLine("\nTest TakeWhile:\nMust be: 1, 1, 1");
+            foreach (var item in coll)
+            {
+                Console.WriteLine(item);
+            }
+            var collint = LinqExtensions.First(list, item => item > 3 );
+            Console.WriteLine("\nTest First:\nMust be: 34");
+            Console.WriteLine(collint);
+            collint = LinqExtensions.FirstOrDefault(list, item => item < 1);
+            Console.WriteLine("\nTest FirstOrDefault:\nMust be: 0");
+            Console.WriteLine(collint);
+            collint = LinqExtensions.Last(list, item => item > 34);
+            Console.WriteLine("\nTest Last:\nMust be: 88");
+            Console.WriteLine(collint);
+            collint = LinqExtensions.LastOrDefault(list, item => item < 3);
+            Console.WriteLine("\nTest LastOrDefault:\nMust be: 2");
+            Console.WriteLine(collint);
+            coll = LinqExtensions.SelectMany(list, n => new List<int> { n * n, n * 10 });
+            Console.WriteLine("\nTest SelectMany:\nMust be:  1, 10, 1, 10, 1, 10, 1156, 340, 4225, 650, 568516, 7540, 7744, 880, 1, 10, 4, 20, 16, 40");
+            foreach (var item in coll)
+            {
+                Console.WriteLine(item);
+            }
+            coll = LinqExtensions.Select(list, n => n*2);
+            Console.WriteLine("\nTest Select:\nMust be:  2, 2, 2, 68, 130, 1508, 176, 2, 4, 8");
+            foreach (var item in coll)
+            {
+                Console.WriteLine(item);
+            }
+            var collbool = LinqExtensions.Any(list, item => item == 6);
+            Console.WriteLine("\nTest Any predicate:\nMust be: False");
+            Console.WriteLine(collbool);
+            collbool = LinqExtensions.Any(list);
+            Console.WriteLine("\nTest Any:\nMust be: True");
+            Console.WriteLine(collbool);
+            collbool = LinqExtensions.All(list, item => item > 0);
+            Console.WriteLine("\nTest All:\nMust be: True");
+            Console.WriteLine(collbool);
+            var colls = LinqExtensions.ToArrayLinq(list);
+            Console.WriteLine("\nTest ToArray:\nMust be: 1, 1, 1, 34, 65, 754, 88, 1, 2, 4");
+            foreach (var item in colls)
+            {
+                Console.WriteLine(item);
+            }
+            coll = LinqExtensions.ToListLinq(list);
+            Console.WriteLine("\nTest ToList:\nMust be: 1, 1, 1, 34, 65, 754, 88, 1, 2, 4");
+            foreach (var item in colls)
+            {
+                Console.WriteLine(item);
+            }
+
+            Console.WriteLine("\nTest Enumerable Collections\nMust be: 2, 5, 7, 10, 11, 23, 53");
+            var tree = new OwnTree<int> { 10, 2, 23, 7, 53, 11, 5 };
+            var iterator = tree.GetEnumerator();
+
+            Console.WriteLine("\nTest Tree");
+            while (iterator.MoveNext())
+                Console.Write(iterator.Current + " ");
+            iterator.Dispose();
+
+            var ownlist = new OwnList<int> { 10, 2, 23, 7, 53, 11, 5 };
+            iterator = ownlist.GetEnumerator();
+            Console.WriteLine("\n\nMust be: 10, 2, 23, 7, 53, 11, 5");
+            Console.WriteLine("Test List");
+            while (iterator.MoveNext())
+                Console.Write(iterator.Current + " ");
+            iterator.Dispose();
+
+            var singlelist = new SingleLinkedList<int> { 10, 2, 23, 7, 53, 11, 5 };
+            iterator = singlelist.GetEnumerator();
+
+            Console.WriteLine("\nTest SingleLinkedList");
+            while (iterator.MoveNext())
+                Console.Write(iterator.Current + " ");
+            iterator.Dispose();
+
+            var doublelist = new DoubleLinkedList<int> { 10, 2, 23, 7, 53, 11, 5 };
+            iterator = doublelist.GetEnumerator();
+
+            Console.WriteLine("\nTest DoubleLinkedList");
+            while (iterator.MoveNext())
+                Console.Write(iterator.Current + " ");
+            iterator.Dispose();
+
+            var stack = new HillelHWCollectionsLibrary.Stack<int>();
+            stack.Push(10);
+            stack.Push(2);
+            stack.Push(23);
+            stack.Push(7);
+            stack.Push(53);
+            stack.Push(11);
+            stack.Push(5);
+            iterator = stack.GetEnumerator();
+
+            Console.WriteLine("\nTest Stack");
+            while (iterator.MoveNext())
+                Console.Write(iterator.Current + " ");
+            iterator.Dispose();
+
+            var queue = new HillelHWCollectionsLibrary.Queue<int>();
+            queue.Enqueue(10);
+            queue.Enqueue(2);
+            queue.Enqueue(23);
+            queue.Enqueue(7);
+            queue.Enqueue(53);
+            queue.Enqueue(11);
+            queue.Enqueue(5);
+            iterator = queue.GetEnumerator();
+
+            Console.WriteLine("\nTest Queue");
+            while (iterator.MoveNext())
+                Console.Write(iterator.Current + " ");
+            iterator.Dispose();
         }
         public void TestList()
         {

@@ -1,4 +1,5 @@
 ﻿using HillelHWCollectionsLibrary.Interfaces;
+using System.Collections;
 
 namespace HillelHWCollectionsLibrary
 {
@@ -121,5 +122,49 @@ namespace HillelHWCollectionsLibrary
                 objects[count - 1 - i] = temp;
             }
         }
+        public IEnumerator<T> GetEnumerator()
+        {
+            for (int i = 0; i < count; i++)
+            {
+                yield return objects[i];
+            }
+        }
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
+        }
+        //public IEnumerator<T> GetEnumerator()
+        //{
+        //    return new ListIterator(this);
+        //}
+        //private class ListIterator : IEnumerator<T>
+        //{
+        //    private readonly OwnList<T> list;
+        //    private int currentIndex = -1;
+
+        //    public T Current => list[currentIndex];
+
+        //    object IEnumerator.Current => Current;
+
+        //    public ListIterator(OwnList<T> list)
+        //    {
+        //        this.list = list;
+        //    }
+
+        //    public bool MoveNext()
+        //    {
+        //        currentIndex++;
+        //        return currentIndex < list.Count;
+        //    }
+
+        //    public void Reset()
+        //    {
+        //        currentIndex = -1;
+        //    }
+
+        //    public void Dispose()
+        //    {
+        //    }
+        //}
     }
 }

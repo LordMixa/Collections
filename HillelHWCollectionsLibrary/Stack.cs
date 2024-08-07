@@ -1,5 +1,6 @@
 ﻿using HillelHWCollectionsLibrary.Interfaces;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -41,7 +42,7 @@ namespace HillelHWCollectionsLibrary
 
             count--;
             T item = elements[count];
-            elements[count] = default!; 
+            elements[count] = default!;
 
             if (count > 0 && count == elements.Length / 4)
             {
@@ -101,6 +102,63 @@ namespace HillelHWCollectionsLibrary
 
             elements = newArray;
         }
-    }
+        public IEnumerator<T> GetEnumerator()
+        {
+            int index = 0;
+            int itemsChecked = 0;
 
+            while (itemsChecked < count)
+            {
+                yield return elements[index];
+                index = (index + 1) % elements.Length;
+                itemsChecked++;
+            }
+        }
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
+        }
+        //public IEnumerator<T> GetEnumerator()
+        //{
+        //    return new StackIterator<T>(elements, count);
+        //}
+        //public class StackIterator<T> : IEnumerator<T>
+        //{
+        //    private readonly T[] elements;
+        //    private int position;
+
+        //    public StackIterator(T[] elements, int count)
+        //    {
+        //        this.elements = elements;
+        //        position = count;
+        //    }
+
+        //    public T Current
+        //    {
+        //        get
+        //        {
+        //            if (position < 0 || position >= elements.Length)
+        //            {
+        //                throw new InvalidOperationException();
+        //            }
+        //            return elements[position];
+        //        }
+        //    }
+
+        //    object IEnumerator.Current => Current;
+
+        //    public bool MoveNext()
+        //    {
+        //        position--;
+        //        return (position >= 0);
+        //    }
+
+        //    public void Reset()
+        //    {
+        //        position = elements.Length;
+        //    }
+
+        //    public void Dispose() { }
+        //}
+    }
 }

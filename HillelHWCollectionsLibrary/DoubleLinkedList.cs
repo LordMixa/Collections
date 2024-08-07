@@ -1,5 +1,6 @@
 ﻿using HillelHWCollectionsLibrary.Interfaces;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,16 +10,16 @@ namespace HillelHWCollectionsLibrary
 {
     public class DoubleLinkedList<T> : SingleLinkedList<T>, IDoubleLinkedList<T>
     {
-        private Element head;
-        private Element tail;
+        private DoubleLinkedListNode<T> head;
+        private DoubleLinkedListNode<T> tail;
         private int count;
-        private class Element
+        private class DoubleLinkedListNode<T>
         {
             public T Data;
-            public Element Next;
-            public Element Previous;
+            public DoubleLinkedListNode<T> Next;
+            public DoubleLinkedListNode<T> Previous;
 
-            public Element(T data)
+            public DoubleLinkedListNode(T data)
             {
                 Data = data;
                 Next = null!;
@@ -43,8 +44,8 @@ namespace HillelHWCollectionsLibrary
             }
             else
             {
-                Element newNode = new Element(value);
-                Element current = head!;
+                DoubleLinkedListNode<T> newNode = new DoubleLinkedListNode<T>(value);
+                DoubleLinkedListNode<T> current = head!;
 
                 for (int i = 0; i < index; i++)
                 {
@@ -76,7 +77,7 @@ namespace HillelHWCollectionsLibrary
 
         public new void Add(T data)
         {
-            Element newNode = new Element(data);
+            DoubleLinkedListNode<T> newNode = new DoubleLinkedListNode<T>(data);
             if (head == null)
             {
                 head = newNode;
@@ -93,7 +94,7 @@ namespace HillelHWCollectionsLibrary
 
         public new void AddFirst(T data)
         {
-            Element newNode = new Element(data);
+            DoubleLinkedListNode<T> newNode = new DoubleLinkedListNode<T>(data);
 
             if (head == null)
             {
@@ -111,7 +112,7 @@ namespace HillelHWCollectionsLibrary
 
         public void Remove(T data)
         {
-            Element current = head;
+            DoubleLinkedListNode<T> current = head;
             while (current != null)
             {
                 if (current.Data!.Equals(data))
@@ -177,7 +178,7 @@ namespace HillelHWCollectionsLibrary
 
         public new bool Contains(T data)
         {
-            Element current = head;
+            DoubleLinkedListNode<T> current = head;
             while (current != null)
             {
                 if (current.Data!.Equals(data))
@@ -197,7 +198,7 @@ namespace HillelHWCollectionsLibrary
         public override T[] ToArray()
         {
             T[] array = new T[count];
-            Element current = head!;
+            DoubleLinkedListNode<T> current = head!;
             int index = 0;
             while (current != null)
             {
@@ -206,5 +207,59 @@ namespace HillelHWCollectionsLibrary
             }
             return array;
         }
+        public IEnumerator<T> GetEnumerator()
+        {
+            DoubleLinkedListNode<T>? current = head;
+            while (current != null)
+            {
+                yield return current.Data;
+                current = current.Next;
+            }
+        }
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
+        }
+        //public IEnumerator<T> GetEnumerator()
+        //{
+        //    return new DoubleLinkedListIterator<T>(this);
+        //}
+        //private class DoubleLinkedListIterator<T> : IEnumerator<T>
+        //{
+        //    private readonly DoubleLinkedList<T> list;
+        //    private DoubleLinkedList<T>.DoubleLinkedListNode<T>? CurrentNode = null;
+
+        //    public T Current { get => CurrentNode != null ? CurrentNode.Data : default; }
+
+        //    object IEnumerator.Current => Current;
+
+        //    public DoubleLinkedListIterator(DoubleLinkedList<T> list)
+        //    {
+        //        this.list = list;
+        //    }
+
+        //    public bool MoveNext()
+        //    {
+        //        if (CurrentNode == null)
+        //        {
+        //            CurrentNode = list.head;
+        //        }
+        //        else
+        //        {
+        //            CurrentNode = CurrentNode.Next;
+        //        }
+
+        //        return CurrentNode != null;
+        //    }
+
+        //    public void Reset()
+        //    {
+        //        CurrentNode = null;
+        //    }
+
+        //    public void Dispose()
+        //    {
+        //    }
+        //}
     }
 }
