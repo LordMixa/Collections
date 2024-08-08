@@ -1,5 +1,6 @@
 ﻿using HillelHWCollectionsLibrary.Interfaces;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,15 +11,15 @@ namespace HillelHWCollectionsLibrary
 {
     public class SingleLinkedList<T> : ISingleLinkedList<T>
     {
-        private Element head;
-        private Element tail;
+        private SingleLinkedListNode<T> head;
+        private SingleLinkedListNode<T> tail;
         private int count;
-        private class Element
+        protected class SingleLinkedListNode<T>
         {
-            public T Data;
-            public Element Next;
+            public T Data { get; }
+            public SingleLinkedListNode<T> Next { get; set; }
 
-            public Element(T data)
+            public SingleLinkedListNode(T data)
             {
                 Data = data;
                 Next = null!;
@@ -35,7 +36,7 @@ namespace HillelHWCollectionsLibrary
         }
         public void Add(T value)
         {
-            Element newNode = new Element(value);
+            SingleLinkedListNode<T> newNode = new SingleLinkedListNode<T>(value);
             if (head == null)
             {
                 head = newNode;
@@ -50,7 +51,7 @@ namespace HillelHWCollectionsLibrary
         }
         public void AddFirst(T value)
         {
-            Element newNode = new Element(value);
+            SingleLinkedListNode<T> newNode = new SingleLinkedListNode<T>(value);
 
             if (head == null)
             {
@@ -79,8 +80,8 @@ namespace HillelHWCollectionsLibrary
             }
             else
             {
-                Element newNode = new Element(value);
-                Element current = head!;
+                SingleLinkedListNode<T> newNode = new SingleLinkedListNode<T>(value);
+                SingleLinkedListNode<T> current = head!;
                 for (int i = 1; i < index; i++)
                 {
                     current = current.Next!;
@@ -100,7 +101,7 @@ namespace HillelHWCollectionsLibrary
 
         public bool Contains(T value)
         {
-            Element current = head!;
+            SingleLinkedListNode<T> current = head!;
             while (current != null)
             {
                 if (current.Data!.Equals(value))
@@ -115,7 +116,7 @@ namespace HillelHWCollectionsLibrary
         public virtual T[] ToArray()
         {
             T[] array = new T[count];
-            Element current = head!;
+            SingleLinkedListNode<T> current = head!;
             int index = 0;
             while (current != null)
             {
@@ -124,5 +125,59 @@ namespace HillelHWCollectionsLibrary
             }
             return array;
         }
+        public IEnumerator<T> GetEnumerator()
+        {
+            SingleLinkedListNode<T>? current = head;
+            while (current != null)
+            {
+                yield return current.Data;
+                current = current.Next;
+            }
+        }
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
+        }
+        //public IEnumerator<T> GetEnumerator()
+        //{
+        //    return new SingleLinkedListIterator<T>(this);
+        //}
+        //private class SingleLinkedListIterator<T> : IEnumerator<T>
+        //{
+        //    private readonly SingleLinkedList<T> list;
+        //    private SingleLinkedList<T>.SingleLinkedListNode<T>? currentNode = null;
+
+        //    public T Current { get => currentNode != null ? currentNode.Data : default; }
+
+        //    object IEnumerator.Current => Current;
+
+        //    public SingleLinkedListIterator(SingleLinkedList<T> list)
+        //    {
+        //        this.list = list;
+        //    }
+
+        //    public bool MoveNext()
+        //    {
+        //        if (currentNode == null)
+        //        {
+        //            currentNode = list.head;
+        //        }
+        //        else
+        //        {
+        //            currentNode = currentNode.Next;
+        //        }
+
+        //        return currentNode != null;
+        //    }
+
+        //    public void Reset()
+        //    {
+        //        currentNode = null;
+        //    }
+
+        //    public void Dispose()
+        //    {
+        //    }
+        //}
     }
 }
