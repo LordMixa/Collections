@@ -13,7 +13,8 @@ namespace HillelHWCollectionsConsole
     {
         public Tests() 
         {
-            IteratorTest();
+            LinqHW1Test();
+            //IteratorTest();
             //TestObsList();
             //TestList();
             //TestBTree();
@@ -21,6 +22,20 @@ namespace HillelHWCollectionsConsole
             //TestDoubleLinkedList();
             //TestQueue();
             //TestStack();
+        }
+        public void LinqHW1Test()
+        {
+            LinqTasks.Task1();
+            LinqTasks.Task2();
+            LinqTasks.Task3();
+            LinqTasks.Task4();
+            LinqTasks.Task5();
+            LinqTasks.Task6();
+            LinqTasks.Task7();
+            LinqTasks.Task8();
+            LinqTasks.Task9();
+            LinqTasks.Task10();
+            LinqTasks.Task11();
         }
         public void IteratorTest()
         {
