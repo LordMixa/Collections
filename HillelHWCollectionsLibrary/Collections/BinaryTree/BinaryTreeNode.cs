@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HillelHWCollectionsLibrary.BinaryTree
+namespace HillelHWCollectionsLibrary.Collections.BinaryTree
 {
     public class BinaryTreeNode<T> : IComparable<T> where T : IComparable<T>
     {

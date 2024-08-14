@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HillelHWCollectionsLibrary
+namespace HillelHWCollectionsLibrary.LinqTasksHW
 {
     public static class LinqTasks
     {
@@ -18,15 +18,15 @@ namespace HillelHWCollectionsLibrary
         }
         public static void Task3()
         {
-            Console.WriteLine(string.Join(" ", Enumerable.Repeat("Linq", 10))); 
+            Console.WriteLine(string.Join(" ", Enumerable.Repeat("Linq", 10)));
         }
         public static void Task4()
         {
-            Console.WriteLine(string.Join(" ", "aaa;abb;ccc;dap".Split(';').Where(w=>w.Contains('a'))));
+            Console.WriteLine(string.Join(" ", "aaa;abb;ccc;dap".Split(';').Where(w => w.Contains('a'))));
         }
         public static void Task5()
         {
-            Console.WriteLine(string.Join(",", "aaa;abb;ccc;dap".Split(';').Where(w => w.Contains('a')).Select(word=>word.Count(ch => ch == 'a'))));
+            Console.WriteLine(string.Join(",", "aaa;abb;ccc;dap".Split(';').Where(w => w.Contains('a')).Select(word => word.Count(ch => ch == 'a'))));
         }
         public static void Task6()
         {
@@ -52,5 +52,7 @@ namespace HillelHWCollectionsLibrary
         {
             Console.WriteLine(new string("baaa;aabb;aaa;xabbx;abb;ccc;dap;zh").Split(';').Skip(2).LastOrDefault(word => word.EndsWith("bb")));
         }
+
     }
+
 }

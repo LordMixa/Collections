@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HillelHWCollectionsLibrary
+namespace HillelHWCollectionsLibrary.LinqTasksHW
 {
     public static class LinqExtensions
     {
@@ -141,7 +141,7 @@ namespace HillelHWCollectionsLibrary
         }
         public static T LastOrDefault<T>(this IEnumerable<T> collection, Predicate<T> predicate)
         {
-            T result = default(T)!;
+            T result = default!;
             foreach (T item in collection)
             {
                 if (predicate(item))
@@ -161,7 +161,7 @@ namespace HillelHWCollectionsLibrary
                     result = item;
                 }
             }
-            if(isValue)
+            if (isValue)
                 return result;
             else
                 throw new ArgumentNullException();
@@ -191,7 +191,7 @@ namespace HillelHWCollectionsLibrary
                 if (!predicate(item))
                     check = false;
             }
-            if(check) 
+            if (check)
                 return true;
             else
                 return false;

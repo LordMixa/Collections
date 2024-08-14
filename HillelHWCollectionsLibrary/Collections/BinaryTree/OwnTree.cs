@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using HillelHWCollectionsLibrary.Interfaces;
 
-namespace HillelHWCollectionsLibrary.BinaryTree
+namespace HillelHWCollectionsLibrary.Collections.BinaryTree
 {
     public class OwnTree<T> : ITree<T> where T : IComparable<T>
     {

@@ -1,7 +1,7 @@
 ﻿using HillelHWCollectionsLibrary.Interfaces;
 using System.Collections;
 
-namespace HillelHWCollectionsLibrary
+namespace HillelHWCollectionsLibrary.Collections
 {
     public class OwnList<T> : Interfaces.IList<T>
     {
