@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace HillelHWCollectionsLibrary
+namespace HillelHWCollectionsLibrary.Collections
 {
     public class Queue<T> : IQueue<T>
     {

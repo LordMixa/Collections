@@ -1,5 +1,6 @@
-﻿using HillelHWCollectionsLibrary;
-using HillelHWCollectionsLibrary.BinaryTree;
+﻿using HillelHWCollectionsLibrary.Collections;
+using HillelHWCollectionsLibrary.Collections.BinaryTree;
+using HillelHWCollectionsLibrary.LinqTasksHW;
 using HillelHWCollectionsLibrary.Observer;
 using System;
 using System.Collections.Generic;
@@ -13,7 +14,8 @@ namespace HillelHWCollectionsConsole
     {
         public Tests() 
         {
-            LinqHW1Test();
+            //LinqHW1Test();
+            LinqHW2Test();
             //IteratorTest();
             //TestObsList();
             //TestList();
@@ -36,6 +38,11 @@ namespace HillelHWCollectionsConsole
             LinqTasks.Task9();
             LinqTasks.Task10();
             LinqTasks.Task11();
+        }
+        public void LinqHW2Test()
+        {
+            var tests = new LinqTasks2();
+            tests.CompleteTasks();
         }
         public void IteratorTest()
         {
@@ -152,7 +159,7 @@ namespace HillelHWCollectionsConsole
                 Console.Write(iterator.Current + " ");
             iterator.Dispose();
 
-            var stack = new HillelHWCollectionsLibrary.Stack<int>();
+            var stack = new HillelHWCollectionsLibrary.Collections.Stack<int>();
             stack.Push(10);
             stack.Push(2);
             stack.Push(23);
@@ -167,7 +174,7 @@ namespace HillelHWCollectionsConsole
                 Console.Write(iterator.Current + " ");
             iterator.Dispose();
 
-            var queue = new HillelHWCollectionsLibrary.Queue<int>();
+            var queue = new HillelHWCollectionsLibrary.Collections.Queue<int>();
             queue.Enqueue(10);
             queue.Enqueue(2);
             queue.Enqueue(23);
@@ -293,7 +300,7 @@ namespace HillelHWCollectionsConsole
         public void TestQueue()
         {
             Console.WriteLine("\n\nQueue List");
-            HillelHWCollectionsLibrary.Queue<object> ownList = new HillelHWCollectionsLibrary.Queue<object>();
+            HillelHWCollectionsLibrary.Collections.Queue<object> ownList = new HillelHWCollectionsLibrary.Collections.Queue<object>();
             ownList.Enqueue(1);
             ownList.Enqueue("asdasd");
             ownList.Enqueue('s');
@@ -314,7 +321,7 @@ namespace HillelHWCollectionsConsole
         public void TestStack()
         {
             Console.WriteLine("\n\nStack List");
-            HillelHWCollectionsLibrary.Stack<object> ownList = new HillelHWCollectionsLibrary.Stack<object>();
+            HillelHWCollectionsLibrary.Collections.Stack<object> ownList = new HillelHWCollectionsLibrary.Collections.Stack<object>();
             ownList.Push(1);
             ownList.Push("asdasd");
             ownList.Push('s');

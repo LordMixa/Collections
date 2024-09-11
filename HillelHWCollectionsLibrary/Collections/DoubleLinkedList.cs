@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HillelHWCollectionsLibrary
+namespace HillelHWCollectionsLibrary.Collections
 {
     public class DoubleLinkedList<T> : SingleLinkedList<T>, IDoubleLinkedList<T>
     {
